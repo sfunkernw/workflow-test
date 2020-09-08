@@ -16,16 +16,16 @@ build_curl() {
     git clean -fdx
     git checkout master
     ./buildconf
-    ./configure --disable-shared
+    ./configure --disable-shared --prefix="${BUILD_DIRECTORY}/curl"
     make
-    strip build/curl
+    strip curl
 }
 
 main() {
     build_curl
     local version
-    version=$(get_version "${BUILD_DIRECTORY}/curl/build/curl --version 2>&1 | head -n1 | awk '{print \$2}'")
-    cp "${BUILD_DIRECTORY}/curl/build/curl" "${OUTPUT_DIRECTORY}/curl"
+    version=$(get_version "${BUILD_DIRECTORY}/curl/curl --version 2>&1 | head -n1 | awk '{print \$2}'")
+    cp "${BUILD_DIRECTORY}/curl/curl" "${OUTPUT_DIRECTORY}/curl"
     echo "[+] Finished building curl ${CURRENT_ARCH}"
 
     echo ::set-output name=PACKAGED_NAME::"curl${version}"
