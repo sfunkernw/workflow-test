@@ -18,14 +18,14 @@ build_curl() {
     ./buildconf
     ./configure --disable-shared
     make
-    strip curl
+    strip build/curl
 }
 
 main() {
     build_curl
     local version
-    version=$(get_version "${BUILD_DIRECTORY}/curl/curl --version 2>&1 | head -n1 | awk '{print \$2}'")
-    cp "${BUILD_DIRECTORY}/curl/curl" "${OUTPUT_DIRECTORY}/curl"
+    version=$(get_version "${BUILD_DIRECTORY}/curl/build/curl --version 2>&1 | head -n1 | awk '{print \$2}'")
+    cp "${BUILD_DIRECTORY}/curl/build/curl" "${OUTPUT_DIRECTORY}/curl"
     echo "[+] Finished building curl ${CURRENT_ARCH}"
 
     echo ::set-output name=PACKAGED_NAME::"curl${version}"
