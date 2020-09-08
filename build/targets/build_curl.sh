@@ -16,8 +16,12 @@ build_curl() {
     git clean -fdx
     git checkout master
     ./buildconf
-    ./configure --disable-shared --prefix="${BUILD_DIRECTORY}/curl"
+    ./configure --disable-shared
     make
+    pwd
+    ls -la
+    ls -la build/
+    ls -la build/curl/
     strip curl
 }
 

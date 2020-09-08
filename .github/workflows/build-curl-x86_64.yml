@@ -9,7 +9,7 @@ jobs:
         steps:
 
           - name: Install dependencies
-            run: apk update && apk add bash git perl make cmake flex bison automake autoconf libtool m4 openssl groff file texinfo zip wget
+            run: apk update && apk add bash git perl make cmake flex bison automake autoconf libtool m4 openssl openssl-dev groff file texinfo zip zlib zlib-dev libssh2 libssh2-dev openldap openldap-dev librtmp wget libidn2 libidn2-dev
 
           - name: Checkout
             uses: actions/checkout@v2
