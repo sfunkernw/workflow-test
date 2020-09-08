@@ -17,6 +17,7 @@ build_curl() {
     git checkout master
     ./buildconf
     ./configure --disable-shared
+    make
     strip curl
 }
 
