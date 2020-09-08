@@ -9,7 +9,7 @@ jobs:
         steps:
 
           - name: Install dependencies
-            run: apk update && apk add bash git perl make cmake flex bison automake autoconf libtool m4 groff-base file texinfo zip wget
+            run: apk update && apk add bash git perl make cmake flex bison automake autoconf libtool m4 groff file texinfo zip wget
 
           - name: Checkout
             uses: actions/checkout@v2
