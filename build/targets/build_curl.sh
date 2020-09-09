@@ -18,13 +18,14 @@ build_curl() {
     mkdir binary/
     ./buildconf
     autoreconf -vif
-    ./configure --disable-shared --enable-static --prefix=${BUILD_DIRECTORY}/curl/binary
+    ./configure --disable-shared --enable-static
     make
+    sleep 10
     pwd
-    ls -la binary/
-    ls -la binary/usr/local/bin/
-    cp binary/usr/local/bin/curl .
-    strip curl
+    ls -la
+    ls -la lib/
+    ls -la src/
+    #strip curl
 }
 
 main() {
