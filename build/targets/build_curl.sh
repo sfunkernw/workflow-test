@@ -15,17 +15,12 @@ build_curl() {
     cd "${BUILD_DIRECTORY}/curl"
     git clean -fdx
     git checkout master
-    mkdir binary/
     ./buildconf
     autoreconf -vif
     ./configure --disable-shared --enable-static
     make
-    sleep 10
-    pwd
-    ls -la
-    ls -la lib/
-    ls -la src/
-    #strip curl
+    cp src/curl .
+    strip curl
 }
 
 main() {
