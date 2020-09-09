@@ -16,12 +16,12 @@ build_curl() {
     git clean -fdx
     git checkout master
     ./buildconf
+    autoreconf -vif
     ./configure --disable-shared
     make
     pwd
     ls -la
-    ls -la build/
-    ls -la build/curl/
+    cp /usr/local/bin/curl .
     strip curl
 }
 
