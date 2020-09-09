@@ -15,13 +15,15 @@ build_curl() {
     cd "${BUILD_DIRECTORY}/curl"
     git clean -fdx
     git checkout master
+    mkdir binary/
     ./buildconf
     autoreconf -vif
-    ./configure --disable-shared
+    ./configure --disable-shared --enable-static --prefix=${BUILD_DIRECTORY}/curl/binary
     make
     pwd
-    ls -la
-    cp /usr/local/bin/curl .
+    ls -la binary/
+    ls -la binary/usr/local/bin/
+    cp binary/usr/local/bin/curl .
     strip curl
 }
 
