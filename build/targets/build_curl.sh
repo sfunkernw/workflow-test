@@ -17,8 +17,12 @@ build_curl() {
     git checkout master
     ./buildconf
     autoreconf -vif
-    ./configure --disable-shared --enable-static
-    make
+    CFLAGS="${GCC_OPTS}" \
+        CXXFLAGS="${GXX_OPTS}" \
+        CPPFLAGS="-static" \
+        LDFLAGS="-static" \
+        ./configure --disable-shared --with-ca-fallback
+    make curl_LDFLAGS=-all-static
     cp src/curl .
     strip curl
 }
@@ -27,6 +31,7 @@ main() {
     build_curl
     local version
     version=$(get_version "${BUILD_DIRECTORY}/curl/curl --version 2>&1 | head -n1 | awk '{print \$2}'")
+    file "${BUILD_DIRECTORY}/curl/curl"
     cp "${BUILD_DIRECTORY}/curl/curl" "${OUTPUT_DIRECTORY}/curl"
     echo "[+] Finished building curl ${CURRENT_ARCH}"
 
