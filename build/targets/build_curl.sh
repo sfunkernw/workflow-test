@@ -15,13 +15,8 @@ build_curl() {
     cd "${BUILD_DIRECTORY}/curl"
     git clean -fdx
     git checkout master
-    ./buildconf
     autoreconf -vif
-    CFLAGS="${GCC_OPTS}" \
-        CXXFLAGS="${GXX_OPTS}" \
-        CPPFLAGS="-static" \
-        LDFLAGS="-static" \
-        ./configure --disable-shared --with-ca-fallback
+    LDFLAGS="-static" ./configure --disable-shared --with-ca-fallback
     make curl_LDFLAGS=-all-static
     cp src/curl .
     strip curl
